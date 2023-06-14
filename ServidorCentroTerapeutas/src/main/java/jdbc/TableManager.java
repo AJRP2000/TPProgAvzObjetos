@@ -89,7 +89,7 @@ public class TableManager {
 	public void createTablaTerapeutas() {
 		DBManager dbm = DBManager.getInstance();
 		Connection c = dbm.connect();
-		String sql = "CREATE TABLE Terapeutas (IdTerapeuta INTEGER, "
+		String sql = "CREATE TABLE Terapeutas (IdTerapeuta INTEGER IDENTITY PRIMARY KEY, "
 				+ "Nombre VARCHAR(50),"
 				+ "Horario VARCHAR(50))";
 		
