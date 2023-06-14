@@ -9,9 +9,10 @@ import entidades.Usuario;
 import clasesVista.JFrameCentroTerapeuta;
 import clasesVista.JFrameLogIn;
 import exceptions.ExcepcionTerapeuta;
+import mediator.LogInMediator;
 import requestBuilder.RequestBuilder;
 
-public class LogInModel {
+public class LogInModel implements LogInMediator {
 	
 	private JFrameLogIn frame;
 	
@@ -19,6 +20,7 @@ public class LogInModel {
 		this.frame=frame;
 	}
 	
+	@Override
 	public void logInPaciente(Usuario usuario) {
 		try {
 			Usuario usuarioPanel = null;
@@ -44,6 +46,7 @@ public class LogInModel {
 		}
 	}
 	
+	@Override
 	public void logInAdmin(Usuario usuario) {
 		try {
 			Usuario usuarioPanel = null;

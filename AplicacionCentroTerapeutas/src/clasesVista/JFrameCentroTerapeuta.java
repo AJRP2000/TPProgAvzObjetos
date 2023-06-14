@@ -14,11 +14,12 @@ import javax.swing.JScrollPane;
 
 import clasesModelo.CentroTerapeutaModel;
 import entidades.Usuario;
+import mediator.TurnoMediator;
 
 public class JFrameCentroTerapeuta extends JFrame {
 	
 	private Usuario usuario;
-	private CentroTerapeutaModel centroTerapeutaModelo;
+	private TurnoMediator turnoMediator;
 	private JMenuBar menuBar;
 	private JMenu turnos;
 	private JMenuItem altaTurno, bajaTurno, editarTurno, consultarTurno;
@@ -28,7 +29,7 @@ public class JFrameCentroTerapeuta extends JFrame {
 	
 	public JFrameCentroTerapeuta(Usuario usuario) {
 		this.setUsuario(usuario);
-		this.centroTerapeutaModelo = new CentroTerapeutaModel(this);
+		this.turnoMediator = new CentroTerapeutaModel(this);
 		initUI();
 	}
 	
@@ -49,7 +50,7 @@ public class JFrameCentroTerapeuta extends JFrame {
 		altaTurno.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				centroTerapeutaModelo.panelAltaTurno();
+				turnoMediator.panelAltaTurno();
 			}
 		});
 		turnos.add(altaTurno);
@@ -58,7 +59,7 @@ public class JFrameCentroTerapeuta extends JFrame {
 		bajaTurno.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				centroTerapeutaModelo.panelBajaTurno();
+				turnoMediator.panelBajaTurno();
 			}
 		});
 		
@@ -68,7 +69,7 @@ public class JFrameCentroTerapeuta extends JFrame {
 		editarTurno.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				centroTerapeutaModelo.panelEditarTurno();
+				turnoMediator.panelEditarTurno();
 			}
 		});
 		turnos.add(editarTurno);
@@ -77,7 +78,7 @@ public class JFrameCentroTerapeuta extends JFrame {
 		consultarTurno.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				centroTerapeutaModelo.panelConsultarTurno();
+				turnoMediator.panelConsultarTurno();
 			}
 		});
 		turnos.add(consultarTurno);
@@ -140,7 +141,7 @@ public class JFrameCentroTerapeuta extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				centroTerapeutaModelo.descargarTabla(tabla);				
+				turnoMediator.descargarTabla(tabla);				
 			}
 		});
 		getContentPane().add(botonDescargar);

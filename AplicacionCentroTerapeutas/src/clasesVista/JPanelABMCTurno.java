@@ -78,7 +78,7 @@ public abstract class JPanelABMCTurno extends JPanel {
 		botonDisponibilidad.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				terapeutaModel.mostrarDisponibilidad(fecha.getText(), returnPanel());
+				terapeutaModel.mostrarDisponibilidad(fecha.getText());
 			}
 		});
 		

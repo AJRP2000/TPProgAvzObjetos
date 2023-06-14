@@ -152,7 +152,7 @@ public class TurnoHandler implements ITurnoHandler{
 	private boolean checkearTurnosSemana(Turno turno) throws Exception {
 		Paciente paciente = turno.getPaciente();
 		int contador = 1;
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSS");   
 		
 		Date fechaTurno = null;
 		Date fechaHoy =  new Date();  
@@ -170,7 +170,6 @@ public class TurnoHandler implements ITurnoHandler{
 				fechaTurno = formatter.parse(recordTurno.getFecha());
 				calendarioRecordTurno.setTime(formatter.parse(recordTurno.getFecha()));
 				semanaRecordTurno  = calendarioRecordTurno.get(Calendar.WEEK_OF_YEAR);
-				
 				if(fechaTurno.compareTo(fechaHoy) >= 0 && semanaRecordTurno == semanaTurno ) {
 					contador++;
 					if(contador > 2) {

@@ -18,6 +18,7 @@ import javax.swing.JTextArea;
 import clasesModelo.LogInModel;
 import entidades.Usuario;
 import factory.UsuarioFactory;
+import mediator.LogInMediator;
 
 public class JFrameLogIn extends JFrame {
 
@@ -25,7 +26,7 @@ public class JFrameLogIn extends JFrame {
 	
 	private JPanel titulo, logIn, este, oeste, sur;
 	private JTextArea dni, contrasena;
-	private LogInModel modeloLogIn;
+	private LogInMediator logInMediator;
 	private JCheckBox checkbox;
 	
 	public JFrameLogIn() {
@@ -33,7 +34,7 @@ public class JFrameLogIn extends JFrame {
 	}
 	
 	private void initUI() {
-		modeloLogIn = new LogInModel(this);
+		logInMediator = new LogInModel(this);
 		setLayout(new BorderLayout());
 		setTitle("Aplicacion Centro Terapeuta");
 		
@@ -111,9 +112,9 @@ public class JFrameLogIn extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Usuario usuario = getUsuario();
 				if(checkbox.isSelected()) 
-					modeloLogIn.logInAdmin(usuario);
+					logInMediator.logInAdmin(usuario);
 				else
-					modeloLogIn.logInPaciente(usuario);
+					logInMediator.logInPaciente(usuario);
 			}
 		});
 		

@@ -14,15 +14,16 @@ import javax.swing.table.TableModel;
 import entidades.*;
 import clasesVista.*;
 import factory.TablaFactory;
+import mediator.TurnoMediator;
 import requestBuilder.RequestBuilder;
-public class CentroTerapeutaModel {
+public class CentroTerapeutaModel implements TurnoMediator {
 	
 	private JFrameCentroTerapeuta frame;
 	public CentroTerapeutaModel(JFrameCentroTerapeuta frame ) {
 		this.frame=frame;
 	}
 
-	
+	@Override
 	public void panelAltaTurno() {
 		Usuario usuario = frame.getUsuario();
 		if(usuario.isAdmin()) {
@@ -33,6 +34,7 @@ public class CentroTerapeutaModel {
 		}
 	}
 	
+	@Override
 	public void panelBajaTurno() {
 		Usuario usuario = frame.getUsuario();
 		if(usuario.isAdmin()) {
@@ -43,6 +45,7 @@ public class CentroTerapeutaModel {
 		}
 	}
 	
+	@Override
 	public void panelEditarTurno() {
 		Usuario usuario = frame.getUsuario();
 		if(usuario.isAdmin()) {
@@ -53,6 +56,7 @@ public class CentroTerapeutaModel {
 		}
 	}
 	
+	@Override
 	public void panelConsultarTurno() {
 		Usuario usuario = frame.getUsuario();
 		if(usuario.isAdmin()) {
@@ -63,6 +67,7 @@ public class CentroTerapeutaModel {
 		}
 	}
 	
+	@Override
 	public void altaTurno(Turno turno) throws Exception {
 		try {
 			String mensaje = RequestBuilder.altaTurno(turno);
@@ -73,6 +78,7 @@ public class CentroTerapeutaModel {
 		}
 	}
 	
+	@Override
 	public void bajaTurno(Turno turno) throws Exception {
 		try {
 			String mensaje = RequestBuilder.bajaTurno(turno);
@@ -83,6 +89,7 @@ public class CentroTerapeutaModel {
 		}
 	}
 	
+	@Override
 	public void editarTurno(Turno turno) throws Exception {
 		try {
 			String mensaje = RequestBuilder.editarTurno(turno);
@@ -93,6 +100,7 @@ public class CentroTerapeutaModel {
 		}
 	}
 	
+	@Override
 	public void consultarTurno(Turno turno) throws Exception {
 		try {
 			List<Turno> turnoRecibido = RequestBuilder.consultarTurno(turno);
@@ -105,6 +113,7 @@ public class CentroTerapeutaModel {
 		}
 	}
 	
+	@Override
 	public void consultarTurnosPaciente(Paciente paciente)  throws Exception {
 		try {
 			List<Turno> listaTurnos = RequestBuilder.consultarTurnosPaciente(paciente);
@@ -121,7 +130,8 @@ public class CentroTerapeutaModel {
 		}
 	}
 	
-	public void mostrarDisponibilidad(String diaSeleccionado, JPanelABMCTurno panel) {
+	@Override
+	public void mostrarDisponibilidad(String diaSeleccionado) {
 		try {
 			List<String> listaHorarios = RequestBuilder.mostrarDisponibilidad(diaSeleccionado);
 			
@@ -133,19 +143,23 @@ public class CentroTerapeutaModel {
 		}
 	}
 	
+	@Override
 	public void popUpFailure(String texto) {
 		JOptionPane.showMessageDialog(frame,texto);
 	}
 	
+	@Override
 	public void borrarPantalla() {
 		frame.borrarPantalla();
 	}
 	
+	@Override
 	public void mensajeError(Exception error) {
 		error.printStackTrace();
 		popUpFailure("Ha ocurrido un error:" + error.getMessage());
 	}
 	
+	@Override
 	public void descargarTabla(JScrollPane tabla) {
 		JTable table = (JTable) tabla.getViewport().getView();
         TableModel model = table.getModel();
