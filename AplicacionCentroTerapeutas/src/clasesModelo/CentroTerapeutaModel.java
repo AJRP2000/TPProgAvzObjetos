@@ -187,9 +187,9 @@ public class CentroTerapeutaModel implements TurnoMediator {
                 writer.append('\n');
             }
             
-            System.out.println("Archivo ha sido descargado con exito");
+            JOptionPane.showMessageDialog(frame,"Archivo ha sido descargado con exito");
         } catch (Exception e) {
-            System.err.println("Ha ocurrido un error al descargar el archivo: " + e.getMessage());
+        	popUpFailure("Ha ocurrido un error al descargar el archivo: " + e.getMessage());
         }
 	}
 }
